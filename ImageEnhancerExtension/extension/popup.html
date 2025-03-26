@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Enhancer</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Image Enhancer</h2>
+            <button id="closeBtn" class="close-btn">x</button>
+        </div>
+        
+        <div id="dropZone" class="drop-zone">
+            <p>Drag and drop an image here</p>
+            <p class="small">You can drag images directly from web pages!</p>
+        </div>
+        
+        <div id="controls" class="controls hidden">
+            <select id="enhanceMethod">
+                <option value="sharpen">Sharpen</option>
+                <option value="unsharp_mask">Unsharp Mask Sharpening</option>
+                <option value="high_boost">High-Boost Sharpening</option>
+                <option value="laplacian">Laplacian Edge Enhancement</option>
+                <option value="sobel">Sobel Edge Detection</option>
+                <option value="prewitt">Prewitt Edge Detection</option>
+            </select>
+            <input type="range" id="intensity" min="0" max="100" value="50">
+            <label for="intensity">Intensity: <span id="intensityValue">50</span></label>
+            <button id="applyBtn">Apply</button>
+        </div>
+        
+        <div id="result" class="result hidden">
+            <img id="enhancedImage" src="" alt="Enhanced Image">
+            <div class="buttons">
+                <button id="downloadBtn">Download</button>
+                <button id="resetBtn">Reset</button>
+                <button id="newImageBtn">New Image</button>
+            </div>
+        </div>
+
+        <div id="history" class="history">
+            <h3>Recent Enhancements</h3>
+            <div id="historyItems"></div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
