@@ -18,12 +18,25 @@
         
         <div id="controls" class="controls hidden">
             <select id="enhanceMethod">
-                <option value="sharpen">Sharpen</option>
-                <option value="unsharp_mask">Unsharp Mask Sharpening</option>
-                <option value="high_boost">High-Boost Sharpening</option>
-                <option value="laplacian">Laplacian Edge Enhancement</option>
-                <option value="sobel">Sobel Edge Detection</option>
-                <option value="prewitt">Prewitt Edge Detection</option>
+                <option value="sharpen">Sharpen (Sharpening)</option>
+                <option value="unsharp_mask">Unsharp Mask Sharpening (Sharpening)</option>
+                <option value="high_boost">High-Boost Sharpening (Sharpening)</option>
+                <option value="laplacian">Laplacian Edge Enhancement (Edge Detection)</option>
+                <option value="sobel">Sobel Edge Detection (Edge Detection)</option>
+                <option value="prewitt">Prewitt Edge Detection (Edge Detection)</option>
+                <option value="gaussian_blur">Gaussian Blur (Smoothing/Blurring)</option>
+                <option value="median_blur">Median Blur (Smoothing/Blurring)</option>
+                <option value="box_blur">Box Blur (Smoothing/Blurring)</option>
+                <option value="bilateral_filter">Bilateral Filter (Smoothing/Noise Reduction)</option>
+                <option value="emboss">Emboss (Stylization)</option>
+                <option value="sepia">Sepia (Color Effect)</option>
+                <option value="invert">Invert (Color Effect)</option>
+                <option value="cartoon">Cartoon (Stylization)</option>
+                <option value="pencil_sketch">Pencil Sketch (Stylization)</option>
+                <option value="canny">Canny Edge Detection (Edge Detection)</option>
+                <option value="threshold">Threshold (Binarization)</option>
+                <option value="clahe">CLAHE (Contrast Enhancement)</option>
+                <!-- Selective Blur removed -->
             </select>
             <input type="range" id="intensity" min="0" max="100" value="50">
             <label for="intensity">Intensity: <span id="intensityValue">50</span></label>

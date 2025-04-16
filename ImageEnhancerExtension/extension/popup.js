@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const intensitySlider = document.getElementById('intensity');
     const intensityValue = document.getElementById('intensityValue');
     const applyBtn = document.getElementById('applyBtn');
+    const closeBtn = document.getElementById('closeBtn');
     let originalImageData = null;
 
     // Update intensity value display
@@ -55,9 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle apply button click
     applyBtn.addEventListener('click', async () => {
         if (!originalImageData) return;
-
+        let area = null;
         try {
-            const response = await fetch('http://localhost:5000/enhance', {
+            const response = await fetch('https://bigbangbackend.onrender.com/enhance', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,7 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify({
                     image: originalImageData,
                     method: document.getElementById('enhanceMethod').value,
-                    intensity: parseInt(intensitySlider.value)
+                    intensity: parseInt(intensitySlider.value),
+                    area: area
                 })
             });
 
@@ -101,6 +103,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('resetBtn').addEventListener('click', () => {
         if (originalImageData) {
             enhancedImage.src = originalImageData;
+        } else {
+            resetToInitialState();
         }
     });
 
@@ -162,12 +166,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // New Image button handler
     document.getElementById('newImageBtn').addEventListener('click', () => {
+        resetToInitialState();
+    });
+
+    // Helper function to reset to initial state
+    function resetToInitialState() {
         dropZone.classList.remove('hidden');
         controls.classList.add('hidden');
         result.classList.add('hidden');
         originalImageData = null;
         enhancedImage.src = '';
+    }
+
+    // Close button handler
+    closeBtn.addEventListener('click', () => {
+        window.close();
     });
+
+    // Ensure the drop zone is visible on startup
+    setTimeout(() => {
+        if (dropZone.classList.contains('hidden') && 
+            result.classList.contains('hidden')) {
+            dropZone.classList.remove('hidden');
+        }
+    }, 100);
 
     // Check for pending image from right-click
     chrome.storage.local.get(['pendingImage'], (result) => {

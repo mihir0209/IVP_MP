@@ -22,8 +22,8 @@ def enhance_image():
         image_data = base64.b64decode(image_data.split(',')[1])
         image = Image.open(io.BytesIO(image_data))
         opencv_image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-        
-        # Apply enhancement using ImageEnhancer
+
+        # Remove selective_blur logic
         enhanced = ImageEnhancer.enhance(opencv_image, method, intensity)
         
         # Convert back to PIL Image
